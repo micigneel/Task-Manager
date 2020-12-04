@@ -22,6 +22,8 @@ router.post("" , async (req, res)=>{
     const user = new User(req.body);
     console.log('User :: '+ user);
     try {
+        console.log('MongoDB URL ::: '+process.env.MONGODB_URL);
+        console.log(mongoose.connection.readyState);
         console.log('Before saving');
         await user.save();
         console.log('Áfter saving');
