@@ -20,10 +20,15 @@ const upload = multer({
 
 router.post("" , async (req, res)=>{
     const user = new User(req.body);
+    console.log('User :: '+ user);
     try {
+        console.log('Before saving');
         await user.save();
+        console.log('Áfter saving');
         sendWelcomeMail(user);
+        console.log('Áfter sending mail');
         const token = await user.generateAuthToken();
+        console.log('Áfter generating token');
         res.status(201).send({ user , token});
     } catch (error) {
         res.status(400).send(error);
