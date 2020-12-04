@@ -33,7 +33,10 @@ router.post("" , async (req, res)=>{
         console.log('Áfter generating token');
         res.status(201).send({ user , token});
     } catch (error) {
-        res.status(400).send(error);
+        console.log(error.response.body);
+        res.status(400).send({
+            error : error.response.body
+        });
     }
 })
 
