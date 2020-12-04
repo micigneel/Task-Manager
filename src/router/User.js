@@ -23,7 +23,6 @@ router.post("" , async (req, res)=>{
     console.log('User :: '+ user);
     try {
         console.log('MongoDB URL ::: '+process.env.MONGODB_URL);
-        console.log(mongoose.connection.readyState);
         console.log('Before saving');
         await user.save();
         console.log('Áfter saving');
@@ -33,9 +32,9 @@ router.post("" , async (req, res)=>{
         console.log('Áfter generating token');
         res.status(201).send({ user , token});
     } catch (error) {
-        console.log(error.response.body);
+        console.log(error);
         res.status(400).send({
-            error : error.response.body
+            error : error
         });
     }
 })
